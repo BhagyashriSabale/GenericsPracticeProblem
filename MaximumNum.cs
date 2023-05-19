@@ -16,12 +16,15 @@ namespace GenericsPracticeProblem
         public T TestMaximum()
         {
             SortValues();
-            return values[^1];
+            T maximum = values[^1];
+            
+            return maximum;
         }
         private void SortValues()
         {
             values.Sort();
         }
+       
         private static T Maximum(T value1, T value2, T value3)
         {
             T maximum = value1; // Assume the first value is the maximum
