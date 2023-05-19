@@ -8,29 +8,35 @@ namespace GenericsPracticeProblem
 {
     internal class MaximumNum<T> where T : IComparable
     {
-        public T[] value;
-        public MaximumNum(T[] value)
+        private List<T> values;
+        public MaximumNum(params T[] values)
         {
-            this.value = value;
+            this.values = new List<T>(values);
         }
-        public T FindMaximum()
+        public T TestMaximum()
         {
-            T maximum = value[^1]; // Assume the first element is the maximum
+            SortValues();
+            return values[^1];
+        }
+        private void SortValues()
+        {
+            values.Sort();
+        }
+        private static T Maximum(T value1, T value2, T value3)
+        {
+            T maximum = value1; // Assume the first value is the maximum
 
-            for (int i = 1; i < value.Length; i++)
+            if (value2.CompareTo(maximum) > 0)
             {
-                if (value[i].CompareTo(maximum) > 0)
-                {
-                    maximum = value[i];
-                }
+                maximum = value2;
+            }
+
+            if (value3.CompareTo(maximum) > 0)
+            {
+                maximum = value3;
             }
 
             return maximum;
-        }
-        public void PrintMaximumValue()
-        {
-            T maximum = FindMaximum();
-            Console.WriteLine("Maximum value is " + maximum);
         }
         
     }
